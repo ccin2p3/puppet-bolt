@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# File managed by Puppet
+#
+ruby_gem_install_dir=$(gem environment  | awk '/INSTALLATION DIRECTORY: / { print $4; }')
+if [ -z "$ruby_gem_install_dir" ]
+then
+  echo "Unable to find ruby gem install directory" >&2
+  exit 1
+fi
+
+bolt_last_version=$(ls -1d ${ruby_gem_install_dir}/gems/bolt-* | tail -1)
+if [ -z "$bolt_last_version" ]
+then
+  echo "Unable to find last bolt version" >&2
+  exit 2
+fi
+
+cp ${bolt_last_version}/lib/bolt/node/ssh.rb{,.orig}
+if [ $? -ne 0 ]
+then
+  echo "Unable to backup original bolt SSH transport code" >&2
+  exit 3
+fi
+
+bolt_ssh_transport_file="${bolt_last_version}/lib/bolt/node/ssh.rb"
+
+sed -i "s/^require 'net\/ssh'$/require 'net\/ssh\/krb'/" $bolt_ssh_transport_file
+if [ $? -ne 0 ]
+then
+  echo "Unable to patch bolt SSH transport to force Net::SSH::Krb usage" >&2
+  exit 4
+fi
+
+if ! grep -c 'options\[:auth_methods\]' $bolt_ssh_transport_file 1>/dev/null 2>&1
+then
+  sed -i '/options\[:password\] = @password if @password/a options[:auth_methods] = %w(<%= @bolt_ssh_auth_methods.join(' ') -%>)' $bolt_ssh_transport_file
+  if [ $? -ne 0 ]
+  then
+    echo "Unable to patch bolt SSH transport to add GSS-API as a valid auth_method" >&2
+    exit 5
+  fi
+fi
+
+exit 0
+
