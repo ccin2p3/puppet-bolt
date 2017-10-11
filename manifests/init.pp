@@ -2,7 +2,7 @@
 class bolt(
   String $package_name = 'bolt',
   String $package_ensure = 'latest',
-  String $package_provider = 'gem',
+  String $package_provider = 'puppet_gem',
   String $hack_script_path = '/var/tmp/hack_bolt_script.sh',
   Array[String] $bolt_ssh_auth_methods = ['gssapi-with-mic', 'publickey', 'password', 'keyboard-interactive'],
   Boolean $hack_bolt_to_allow_ssh_gssapi = false
@@ -16,7 +16,7 @@ class bolt(
   if ($hack_bolt_to_allow_ssh_gssapi == true) {
     package { 'net-ssh-krb':
       ensure   => 'latest',
-      provider => 'gem'
+      provider => $package_provider
     }
 
     file { $hack_script_path:
