@@ -2,7 +2,7 @@
 
 ## What this module do
 
-Install puppetlabs bolt with ruby gems.
+Install puppetlabs bolt with ruby gems, using (by default) the Puppet ruby build.
 
 It also supports a hack that allows to use GSS-API with SSH in bolt.
 
@@ -33,6 +33,11 @@ class { '::bolt':
 }
 ```
 
+Hiera works as well.
+
+If you want to use system ruby instead of puppet ruby, you can set
+`bolt::provider: gem`.  (Default is `puppet_gem`.)
+
 ## Support / Limitations
 
 This module is not intended to be supported on a long term. We know that this is an ugly hack and we plan to drop this module
@@ -43,3 +48,4 @@ You can still fill an issue or submit pull requests if you'd like to share !
 ## Contributor
 
 * Remi Ferrand for IN2P3 Computing Centre, CNRS
+* Tim Skirvin for Fermi National Accelerator Laboratory
