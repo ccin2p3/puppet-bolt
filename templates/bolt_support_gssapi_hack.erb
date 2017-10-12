@@ -2,6 +2,8 @@
 #
 # File managed by Puppet
 #
+export PATH=/opt/puppetlabs/puppet/bin:$PATH
+
 ruby_gem_install_dir=$(gem environment  | awk '/INSTALLATION DIRECTORY: / { print $4; }')
 if [ -z "$ruby_gem_install_dir" ]
 then
