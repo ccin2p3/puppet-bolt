@@ -28,8 +28,9 @@ If you know what you're doing, you can also modify the `auth_methods` passed to 
 
 ```puppet
 class { '::bolt':
-  hack_bolt_to_allow_ssh_gssapi => true,
-  bolt_ssh_auth_methods         => ['gssapi-with-mic', 'publickey', 'password', 'keyboard-interactive']
+  hack_bolt_to_allow_ssh_gssapi            => true,
+  explicitly_specify_bolt_ssh_auth_methods => true,
+  bolt_ssh_auth_methods                    => ['gssapi-with-mic', 'publickey', 'password', 'keyboard-interactive']
 }
 ```
 
