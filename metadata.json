@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-bolt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "ccin2p3",
   "summary": "Install puppetlabs bolt with ruby gems and supports a hack that allows to use GSS-API with SSH in bolt.",
   "license": "CECILL-B",
