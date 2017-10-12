@@ -18,6 +18,13 @@ Vagrant.configure('2') do |config|
           override.ssh.port = 22
         end unless ENV['BOOT']
       end
+
+      [ "sudo yum clean all",
+        "sudo yum install -y https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.3.2-1.el7.x86_64.rpm",
+        "sudo yum install -y make gcc ruby-devel"
+      ].each do |command|
+        config.vm.provision "shell", inline: command
+      end
     end
   end
 end

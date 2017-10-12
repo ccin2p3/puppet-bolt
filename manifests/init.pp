@@ -27,15 +27,12 @@ class bolt(
       content => template("${module_name}/bolt_support_gssapi_hack.erb")
     }
 
-    ->
-
-    exec { "hack bolt to add ssh gss-api support":
-      command      => $hack_script_path,
-      refreshonly  => true,
-      subscribe    => Package[$package_name]
+    -> exec { 'hack bolt to add ssh gss-api support':
+      command     => $hack_script_path,
+      refreshonly => true,
+      subscribe   => Package[$package_name]
     }
   }
-  
 }
 
 # vim: tabstop=2 shiftwidth=2 softtabstop=2

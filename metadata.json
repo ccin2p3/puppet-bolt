@@ -1,0 +1,66 @@
+{
+  "name": "ccin2p3-bolt",
+  "version": "0.1.0",
+  "author": "ccin2p3",
+  "summary": "Install puppetlabs bolt with ruby gems and supports a hack that allows to use GSS-API with SSH in bolt.",
+  "license": "CECILL-B",
+  "source": "https://github.com/ccin2p3/puppet-bolt",
+  "project_page": "https://github.com/ccin2p3/puppet-bolt",
+  "issues_url": "https://github.com/ccin2p3/puppet-bolt/issues",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Fedora",
+      "operatingsystemrelease": [
+        "25"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0 < 6.0.0"
+    }
+  ],
+  "pdk-version": "1.2.0",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-module-template.git",
+  "template-ref": "heads/master-0-g3f7d5ce"
+}
